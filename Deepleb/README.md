@@ -1,4 +1,4 @@
-# Deepleb V3
+# Deepleb
 
 Deepleb은 Semantic Segmentation모델 중 하나이다.   
 이 모델을 이용해서 구글폰인 Pixel 2와 Pixel 2X의 Portrait Mode를 구현했다고 한다.
@@ -23,3 +23,19 @@ Donsampling은 주 목적이 차원을 줄여서 적은 메모리로 깊은 Conv
 어쩔 수 없이 위치의 정보를 잃게된다. 마지막에 Fully-Connected Layer를 넣지 않고, Fully Connected Network를 주로 사용하고 FCN 이후 대부분의 모델들에서 사용한다.
 
 Upsampling은 Downsampling을 통해서 받은 결과의 차원을 늘려서 인풋과 같은 차원으로 만들어주는 과정이다. 주로 Strided Transpose Convolution을 사용한다.
+
+## Deepleb v3+
+
+![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F97ZQt%2FbtqBgeIucmZ%2FsSBqU5UIhsF7sSJg3D2KfK%2Fimg.png)   
+
+위 이미지를 보면 파란박스인 Encoder와 빨간박스인 Decoder가 나온다.
+
+### Encoder & Decoder
+
+![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbs8OkP%2FbtqBdT6OoP7%2F85kD5ZFk5OsrsRlcNvsan1%2Fimg.png)   
+U-net의 구조 예시   
+
+빨간선을 기준으로 왼쪽이 encoder 오른쪽이 decoder로 encoder에서는 input이미지를 downsampling해 특징을 추출해 내는 역할을 하고, decoder는 Upsampling을 하며
+segmentation map을 만들어 낸다.
+
+U-net과 마찬가지로 deeplab도 encoder가 input image를 downsampling해 decoder 부분에 전달해 주는 것을 볼 수 있다.
