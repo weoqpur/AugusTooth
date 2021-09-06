@@ -16,3 +16,10 @@ AlexNet, VGG 등 분류에 자주 쓰이는 깊은 신경망들은 Semantic Segm
 보통 Fully Connected Layer에 의해서 위치에 대한 정보를 잃게 된다. 기존 모델을 사용 못하게 되는 상황이 생기게 된 것이다.
 
 이러한 문제의 중간점을 찾기 위해서 보통 Semantic Segmentation 모델들은 보통 Downsampling & Upsampling의 형태를 가지고 있다.
+
+### Downsampling & Upsampling
+
+Donsampling은 주 목적이 차원을 줄여서 적은 메모리로 깊은 Convolution을 할 수 있게 하는 것이다. 보통 stride를 2이상으로 하는 Convolution을 사용하거나, pooling을 사용한다. 이 과정을 진행하면
+어쩔 수 없이 위치의 정보를 잃게된다. 마지막에 Fully-Connected Layer를 넣지 않고, Fully Connected Network를 주로 사용하고 FCN 이후 대부분의 모델들에서 사용한다.
+
+Upsampling은 Downsampling을 통해서 받은 결과의 차원을 늘려서 인풋과 같은 차원으로 만들어주는 과정이다. 주로 Strided Transpose Convolution을 사용한다.
