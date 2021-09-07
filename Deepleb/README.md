@@ -39,3 +39,13 @@ U-net의 구조 예시
 segmentation map을 만들어 낸다.
 
 U-net과 마찬가지로 deeplab도 encoder가 input image를 downsampling해 decoder 부분에 전달해 주는 것을 볼 수 있다.
+
+### Atrous Convolution
+![`이미지`](https://miro.medium.com/max/1130/1*-r7CL0AkeO72MIDpjRxfog.png)   
+atrous convolution 예시
+
+Atrous convolution이란 기존 convolution과 다르게 필터 사이에 간격을 두는 것이다. rate라는 값에 따라 그 간격이 결정되고 일반 convolution 필터처럼 간격이 없는 것은 rate = 1에 해당된다.
+
+atrous convolution의 장점은 파라미터의 수를 늘리지 않고도 receptive field를 넓일 수 있다는 것이다.(한 픽셀이 볼 수 있는 영역이 커진다.)
+![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbxZP4B%2FbtqBgEAb2HS%2FNdLMGUmN5xPkWQeGkForLK%2Fimg.png)   
+위 이미지를 보면 feature map의 해상도가 확실히 차이 나는게 보인다.
