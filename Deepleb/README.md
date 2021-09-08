@@ -49,3 +49,38 @@ Atrous convolution이란 기존 convolution과 다르게 필터 사이에 간격
 atrous convolution의 장점은 파라미터의 수를 늘리지 않고도 receptive field를 넓일 수 있다는 것이다.(한 픽셀이 볼 수 있는 영역이 커진다.)
 ![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbxZP4B%2FbtqBgEAb2HS%2FNdLMGUmN5xPkWQeGkForLK%2Fimg.png)   
 위 이미지를 보면 feature map의 해상도가 확실히 차이 나는게 보인다.
+
+### Depthwise Convolution
+
+![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FZiVRI%2FbtqBeUcU6RY%2FgRZSJVpahvMsA4SkUVw0KK%2Fimg.png)   
+depthwise separable Convolution의 예시
+
+Depthwise seperable convolution이란 한 레이어의 input 채널을 따로 따로 convolution 하고 concatenate 한 후 채널 수를 조정하는 방식이다.
+설명을 더 해보면 Depthwise seperable convolution은 크게 Depthwise Convolution과 Pointwise Convolution 부분으로 나눌 수 있다.
+
+Depthwise Convolution은 한 layer의 input channel을 따로 따로 convolution하고 concatenate 하는 것을 말한다.
+Pointwise Convolution은 1x1 convolution을 통해 output channel 수를 조정하는 것을 말한다.
+
+이 둘을 진행하고 나면 커널의 크기를 KxK, Output channel 수를 M이라고 할 때, 기존 파라미터 수가 KxKxM 일 때 Depthwise seperable Convolution은
+KxK+M이 되므로 파라미터수를 줄일 수 있다.(연산량 감소)
+
+연산량이 감소하였지만 기존 convolution과 성능이 비슷하기에 빨라졌다 할 수 있다.
+
+### Atrous Spatial Pyramid Pooling (ASPP)
+
+![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcBRTL2%2FbtqBikIQVIv%2FZ7mAtovDoETDhgmN82Kwvk%2Fimg.png)   
+ASPP의 예시
+
+ASPP는 특정 layer에 대해서 다양한 rate의 Atrous Convolution을 적용해 결과를 concatenate하고 1x1 Convolution한 방법이다.
+ASPP를 사용하면 Atrous Convolution rate에 따른 다양한 크기의 물체를 잘 인식해 결과를 내게 되는 장점이 있다.
+
+ASPP는 v2로 넘어갈때 추가되었다.
+
+### Residual learning
+![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtLGfz%2FbtqBika4Ptr%2FQtNtJ6PCEB0282O9ws4511%2Fimg.png)   
+Resnet의 residual block 예시
+
+많은 모델에서 활용되고 있는 residual learning이다.
+
+사진을 해석하면 F(x)라는 모델에 input X가 들어가 일련의 과정을 거치면서 자신(identity)인 X가 더해져서 output이 F(x)+X가 나오는 구조이다.
+vanishing/exploding gradient 문제를 줄여준다는 장점이 있다.
