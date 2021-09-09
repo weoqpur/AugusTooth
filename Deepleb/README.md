@@ -84,3 +84,20 @@ Resnet의 residual block 예시
 
 사진을 해석하면 F(x)라는 모델에 input X가 들어가 일련의 과정을 거치면서 자신(identity)인 X가 더해져서 output이 F(x)+X가 나오는 구조이다.
 vanishing/exploding gradient 문제를 줄여준다는 장점이 있다.
+
+---
+
+### model structure
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbeQy5l%2FbtqBpQHRp11%2Fjyrxtr2iTjDFL92mXkbz31%2Fimg.png) ![`이미지`](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbbIG1O%2FbtqBhDWuaa2%2FQlVDt0w7ZDfKFHFFrYMBTK%2Fimg.png)   
+deeplab v3+ 모델
+
+오른쪽 그림은 모델의 전체적인 구조를 보여주고 연두색 박스에 해당되는 부분을 보여준다.
+왼쪽 그림을 보면 Encoder와 Decoder 부분으로 나뉘는 것을 볼 수 있다.
+
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F0CzOE%2FbtqBoxbd5Bm%2FR2Av9MkG6xHCy7b35Guf00%2Fimg.png) ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcfK4CW%2FbtqBoPWV62t%2FSEoWCkiLE1YHpGCVlz9Qt1%2Fimg.png)   
+deeplab v3+ 모델
+
+여러 layer들을 거친 후 ASPP를 적용한다.
+두 사진의 연두 박스 부분이 ASPP부분이다.
+
+ASPP까지 적용했으면 Decoder 부분에서 Upsampling을 진행해 최종 output을 내게 됩니다.
